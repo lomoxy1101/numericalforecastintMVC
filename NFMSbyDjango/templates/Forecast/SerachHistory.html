@@ -280,13 +280,19 @@
                         timeout:5000,  // 设置请求超时
     {#                    contentType: 'application/x-www-form-urlencoded',#}
                         success: function (data) {
-                            //更新图片url
-                            var img=document.getElementById('img');
-                            img.src=data.image_url;
-                            //更新list列表
-                            var pic_list=document.getElementById('img_list');
-                            var html=data.html;
-                            pic_list.innerHTML=html;
+                            //判断'result_code'
+                            result_code = data.result_code;
+                            if(result_code==1){
+                                alert('no records, pls try again!')
+                            }else{
+                                //更新图片url
+                                var img=document.getElementById('img');
+                                img.src=data.image_url;
+                                //更新list列表
+                                var pic_list=document.getElementById('img_list');
+                                var html=data.html;
+                                pic_list.innerHTML=html;
+                            }
                         },
                         fail: function (data) {
 

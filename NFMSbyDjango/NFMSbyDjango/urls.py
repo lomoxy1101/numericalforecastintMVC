@@ -15,9 +15,11 @@ Including another URLconf
 """
 from django.conf.urls import url,include
 from django.contrib import admin
-from NFMS import views
+# from NFMS import views
 from Forecast import views
-# from ForecastTest import views
+from django.contrib.staticfiles.urls import staticfiles_urlpatterns
+
+from django.contrib import staticfiles# from ForecastTest import views
 
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
@@ -35,4 +37,12 @@ urlpatterns = [
      url(r'Forecast/actions*',views.getActions),
      url(r'^Forecast/searchInit',views.searchInit),
      url(r'^Forecast/searchHistory',views.searchHistory),
+    url(r'Forecast/produceImg*',views.produceImg),
+    # url(r'^Forecast/',include("Forecast.urls"))
+    # url(r'^download/(?P<path>.*)', 'django.views.static.serve', {'document_root':'/download'}),
+    # url(r'^download/(?P<path>.*)','django.views.static.serve', {'document_root':'/download'}),
 ]
+
+#加载图片时需要使用的
+# urlpatterns += staticfiles_urlpatterns()
+# print(urlpatterns)

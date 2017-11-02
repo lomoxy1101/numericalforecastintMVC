@@ -88,8 +88,29 @@ DATABASES = {
     #     'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
     # }
     #单位台式机
+    #aw
+    # 'default': {
+    #
+    #    'ENGINE': 'django.db.backends.mysql',
+    #    'NAME': 'nfsys',
+    #    'USER': 'root',
+    #    'PASSWORD': '123456',
+    #    'HOST': '',
+    #    'PORT': '',
+    # }
+    # 5510
+    # 'default': {
+    #
+    #     'ENGINE': 'django.db.backends.mysql',
+    #     'NAME': 'nfsysbydj',
+    #     'USER': 'root',
+    #     'PASSWORD': '123456',
+    #     'HOST': '',
+    #     'PORT': '',
+    # }
     'default': {
 
+      
        'ENGINE': 'django.db.backends.mysql',
        'NAME': 'nfsysbydj',
        'USER': 'root',
@@ -152,12 +173,13 @@ STATIC_ROOT = os.path.join(BASE_DIR,'static')
 
 
 STATICFILES_DIRS = [
-    # os.path.join(BASE_DIR, "static").replace('\\', '/'),
+    # os.path.join(STATIC_ROOT, "static").replace('\\', '/'),
     ('css', os.path.join(STATIC_ROOT, 'css').replace('\\', '/')),
     ('js', os.path.join(STATIC_ROOT, 'js').replace('\\', '/')),
     ('fonts', os.path.join(STATIC_ROOT, 'fonts').replace('\\', '/')),
-    ('images', os.path.join(STATIC_ROOT, 'images').replace('\\', '/')),
-    ('upload', os.path.join(STATIC_ROOT, 'upload').replace('\\', '/')),
+    ('img', os.path.join(STATIC_ROOT, 'img').replace('\\', '/')),
+    # ('images', os.path.join(STATIC_ROOT, 'images').replace('\\', '/')),
+    # ('upload', os.path.join(STATIC_ROOT, 'upload').replace('\\', '/')),
 ]
 #
 # STATICFILES_DIRS = [
@@ -193,13 +215,13 @@ AREA_DICT={
 }
 
 FACTOR_DICT={
-    'F0':'',#有效波高
+    'F0':'front',#有效波高
     'F1':'seaice',#海冰
     'F2': '',#谱峰周期
     'F3': 'eddy',#中尺度涡
     'F4': 'wave',#海流
     'F5': 'wind',#风
-    'F6': '' #雷暴
+    'F6': 'ts' #雷暴
 }
 
 LAYER_DICT={
@@ -217,3 +239,12 @@ LAYER_DICT={
     'L11': '',
     'L12': ''
 }
+
+# 部分自定义的配置节
+FTP_URL="128.5.6.21"
+# TARGET_DIR="D:\测试"
+# TARGET_DIR="E:\\03协同开发\\数值预报显示系统\\numericalforecastintMVC\\NFMSbyDjango\\static\\img\\download"
+TARGET_DIR=os.path.join(BASE_DIR,'static','img','download')
+print("TARGET_DIR:%s"%TARGET_DIR)
+# MEDIA_ROOT = os.path.join(BASE_DIR, 'media').replace('\\', '/')
+# MEDIA_URL = '/media/'
