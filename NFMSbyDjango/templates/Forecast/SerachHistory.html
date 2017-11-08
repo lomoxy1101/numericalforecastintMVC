@@ -13,104 +13,116 @@
 		<script type="text/javascript" src="/static/js/customPlugin.js"></script>
 		<script type="application/javascript" src="/static/js/knockout-3.4.2.debug.js"></script>
 		<style type="text/css">
-			.panel_module{
-				margin-left: -15px;
-				margin-right: -15px;
-			}
-			.row-margin-top{
-				margin-top: 10px;
+			.mycontent {
+				/*height: 500px;*/
+				/*top: 50px;*/
+				height: 100%;
+				display: flex;
+				flex-direction: column;
+				flex-wrap: nowrap;
+				background-color: #B92C28;
 			}
 		</style>
 {% endblock %}
 {% block content %}
-{#    <div class="container">#}
-    <div class="col-md-10">
-			<div class="row">
-				<div class="col-md-12">
-					<div class="panel panel-primary">
-						<div class="panel-heading">历史搜索</div>
-							<div class="panel-body">
-								<!--
-                                	作者：826168013@qq.com
-                                	时间：2017-08-30
-                                	描述：搜索要素框
+    <!--顶部的按钮组-->
+    				<div style="padding: 0px;">
+    					<div class="panel panel-primary" style="margin: 0px;border: none;">
+    						<div class="panel-heading">历史检索</div>
+                            <div class="panel-body">
+                                <!--
+                                    作者：826168013@qq.com
+                                    时间：2017-11-07
+                                    描述：条件搜索框
                                 -->
-								<form id="editForm">
-									<div class="form-group col-md-3">
-										<label>起始时间</label>
-										<div class="input-group date" id="datepicker_starttime" data-link-field="dtp_input1">
-											<input id="input_starttime" name="start_time" class="form-control" size="16" type="text" value="2017-09-01" readonly>
-											<span class="input-group-addon"><span class="glyphicon glyphicon-remove"></span></span>
-										</div>
-										<label>结束时间</label>
-										<div class="input-group date" id="datepicker_endtime"  data-link-field="dtp_input1">
-											<input id="input_endtime" name="end_time" class="form-control" size="16" type="text" value="" readonly>
-											<span class="input-group-addon"><span class="glyphicon glyphicon-remove"></span></span>
-										</div>
-									</div>
-									<div class="form-group col-md-2">
-										<label>区域</label><br />
-										<select id="select_area" name="area" data-bind="options: areaList,optionsCaption:'请选择区域'"></select>
-										<br/><label>类别</label><br />
-										<select id="select_category" name="category" data-bind="options: CategoryList,
-											optionsText:'Name',
-											optionsValue:'Code',
-											value:Category,
-											optionsCaption:'请选择类别'"></select>
-									</div>
-									<div class="form-group col-md-2">
-										<label>要素</label><br />
-										<select id="select_factor" name="factor" data-bind="options:CurrentFactorList,
-											optionsText:'Name',
-											optionsValue:'Code',
-											value:Factor,
-											optionsCaption:'请选择要素'">
-										</select>
-										<br/><label>层级</label><br />
-										<select id="select_layer" name="layer" data-bind="options:CurrentLayerList,
-											optionsText:'Name',
-											optionsValue:'Code',
-											value:Layer,
-											optionsCaption:'请选择层级'">
-										</select>
-									</div>
-									<div class="form-group col-md-2">
-										<label>时效</label><br />
-										<select id="select_moment" name="moment" data-bind="options:CurrentMomentList,
-											optionsText:'Name',
-											optionsValue:'Code',
-											value:Moment,
-											optionsCaption:'请选择时效'">
-										</select>
-									</div>
-									<div class="form-group col-md-2">
-										<button type="button" id="btn_search" class="btn btn-primary btn-block" style="padding: 25px;" onclick="doSubmit()">查询</button>
-									</div>
-								</form>
-							</div>
-					</div>
-				</div>
-			</div>
-			<!--
-            	作者：826168013@qq.com xiaoyuan
-            	时间：2017-09-05
-            	描述：下部图片展示
-            -->
-			<div class="row">
-				<div class="col-md-9">
-					<img id="img" src="{{ image_url }}" style="width: 100%"/>
-				</div>
-				<div class="col-md-3">
+                                <form id="editForm">
+                                    <div class="form-group col-md-3">
+                                        <label>起始时间</label>
+                                        <div class="input-group date" id="datepicker_starttime" data-link-field="dtp_input1">
+                                            <input id="input_starttime" name="start_time" class="form-control" size="16" type="text" value="2017-09-01" readonly>
+                                            <span class="input-group-addon"><span class="glyphicon glyphicon-remove"></span></span>
+                                        </div>
+                                        <label>结束时间</label>
+                                        <div class="input-group date" id="datepicker_endtime"  data-link-field="dtp_input1">
+                                            <input id="input_endtime" name="end_time" class="form-control" size="16" type="text" value="" readonly>
+                                            <span class="input-group-addon"><span class="glyphicon glyphicon-remove"></span></span>
+                                        </div>
+                                    </div>
+                                    <div class="form-group col-md-2">
+                                        <label>区域</label><br />
+                                        <select id="select_area" name="area" data-bind="options: areaList,optionsCaption:'请选择区域'"></select>
+                                        <br/><label>类别</label><br />
+                                        <select id="select_category" name="category" data-bind="options: CategoryList,
+                                            optionsText:'Name',
+                                            optionsValue:'Code',
+                                            value:Category,
+                                            optionsCaption:'请选择类别'"></select>
+                                    </div>
+                                    <div class="form-group col-md-2">
+                                        <label>要素</label><br />
+                                        <select id="select_factor" name="factor" data-bind="options:CurrentFactorList,
+                                            optionsText:'Name',
+                                            optionsValue:'Code',
+                                            value:Factor,
+                                            optionsCaption:'请选择要素'">
+                                        </select>
+                                        <br/><label>层级</label><br />
+                                        <select id="select_layer" name="layer" data-bind="options:CurrentLayerList,
+                                            optionsText:'Name',
+                                            optionsValue:'Code',
+                                            value:Layer,
+                                            optionsCaption:'请选择层级'">
+                                        </select>
+                                    </div>
+                                    <div class="form-group col-md-2">
+                                        <label>时效</label><br />
+                                        <select id="select_moment" name="moment" data-bind="options:CurrentMomentList,
+                                            optionsText:'Name',
+                                            optionsValue:'Code',
+                                            value:Moment,
+                                            optionsCaption:'请选择时效'">
+                                        </select>
+                                    </div>
+                                    <div class="form-group col-md-2">
+                                        <button type="button" id="btn_search" class="btn btn-primary btn-block" style="padding: 25px;" onclick="doSubmit()">查询</button>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
 
-					<ul id="img_list" class="list-group" style="overflow: scroll;height: 500px;">
-                        {% for key,value in data_dict.items %}
-                            <a href="#" class="list-group-item" data-imgurl="{{ value }}" onclick="changePic(this)">{{ key }}</a>
-                        {% endfor %}
+    				<div style="height: 100%;width: 100%;background-color: red;display: inline-flex;flex-direction: row;">
+                        <ul id="img_list" class="list-group" style="overflow: scroll;height: 100%;width: 20%;margin-bottom: 0px;">
+                             {% for key,value in data_dict.items %}
+                                <a href="#" class="list-group-item" data-imgurl="{{ value }}" onclick="changePic(this)">{{ key }}</a>
+                            {% endfor %}
+                        </ul>
 
-					</ul>
-				</div>
-			</div>
-		</div>
+                        <div style="height: 100%;width: 100%;background: grey;">
+                            <img id="img" src="{{ image_url }}" style="height: 100%;"/>
+                        </div>
+				    </div>
+
+{#			<!--#}
+{#            	作者：826168013@qq.com xiaoyuan#}
+{#            	时间：2017-09-05#}
+{#            	描述：下部图片展示#}
+{#            -->#}
+{#			<div class="row">#}
+{#				<div class="col-md-9">#}
+{#					<img id="img" src="{{ image_url }}" style="width: 100%"/>#}
+{#				</div>#}
+{#				<div class="col-md-3">#}
+{##}
+{#					<ul id="img_list" class="list-group" style="overflow: scroll;height: 500px;">#}
+{#                        {% for key,value in data_dict.items %}#}
+{#                            <a href="#" class="list-group-item" data-imgurl="{{ value }}" onclick="changePic(this)">{{ key }}</a>#}
+{#                        {% endfor %}#}
+{##}
+{#					</ul>#}
+{#				</div>#}
+{#			</div>#}
+{#		</div>#}
 {% endblock %}
 
 {% block bottom-js %}

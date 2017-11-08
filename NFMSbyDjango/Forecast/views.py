@@ -5,7 +5,8 @@ from Forecast import Forms
 from Forecast import viewmodels
 
 from django.http import JsonResponse
-import jsonfrom django.conf import settings
+import json
+from django.conf import settings
 import os
 from Forecast import utils
 from django.http import HttpResponse
